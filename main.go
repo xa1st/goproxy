@@ -30,11 +30,7 @@ func ProxyTest(proxy_addr string) {
 	// 检测代理IP访问地址
 	var testUrl string
 	// 判定传来的代理是否是https
-	if strings.Contains(proxy_addr, "https") {
-		testUrl = "https://httpbin.org/get"
-	} else {
-		testUrl = "http://httpbin.org/get"
-	}
+	testUrl = "http://httpbin.org/ip"
 	// 解析代理地址
 	proxy, err := url.Parse(proxy_addr)
 	if err != nil {
@@ -71,7 +67,8 @@ func ProxyTest(proxy_addr string) {
 	speed := int(time.Now().Sub(begin).Nanoseconds() / 1000 / 1000)
 	body, err := ioutil.ReadAll(response.Body)
 	// 这里验证一下是否真的可以代理成功
-	if !strings.Contains(string(body), testUrl) {
+	tmp_addr := strings.Split(strings.Replace(proxy_addr, "http://", "", 1), ":")
+	if !strings.Contains(string(body), tmp_addr[0]) {
 		return
 	}
 	// 判断是否成功访问，如果成功访问StatusCode应该是200
