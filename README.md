@@ -11,12 +11,12 @@
 
 [https://icanhazip.com/](https://icanhazip.com/)
 
-[http://httpbin.org/ip](http://httpbin.org/ip)
+~~[http://httpbin.org/ip](http://httpbin.org/ip)~~ [已失效]
 
 ## 3. 使用方法:
 
 ```bash
-git clone github.com/mopo/goproxy
+git clone github.com/afyi/goproxy
 go run main.go
 ```
 ## 4. 其它
