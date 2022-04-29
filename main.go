@@ -30,7 +30,7 @@ func ProxyTest(proxy_addr string) {
 	// 检测代理IP访问地址
 	var testUrl string
 	// 判定传来的代理是否是https
-	testUrl = "http://httpbin.org/ip"
+	testUrl = "https://icanhazip.com/"
 	// 解析代理地址
 	proxy, err := url.Parse(proxy_addr)
 	if err != nil {
@@ -60,7 +60,7 @@ func ProxyTest(proxy_addr string) {
 	// 发起请求
 	response, err := httpClient.Do(request)
 	if err != nil {
-		// log.Println(err)
+		// fmt.Printf("[失败] %s访问失败\n", proxy_addr)
 		return
 	}
 	defer response.Body.Close()
@@ -68,6 +68,7 @@ func ProxyTest(proxy_addr string) {
 	body, err := ioutil.ReadAll(response.Body)
 	// 这里验证一下是否真的可以代理成功
 	tmp_addr := strings.Split(strings.Replace(proxy_addr, "http://", "", 1), ":")
+	// fmt.Println(string(body), "|", tmp_addr, "|", proxy_addr)
 	if !strings.Contains(string(body), tmp_addr[0]) {
 		return
 	}
@@ -77,7 +78,7 @@ func ProxyTest(proxy_addr string) {
 		return
 	}
 	if response.StatusCode == 200 {
-		fmt.Println(proxy_addr, "ok", speed)
+		fmt.Println("[成功]", proxy_addr, "延时:", speed, "ms")
 	} else {
 		fmt.Println("err", err)
 	}
