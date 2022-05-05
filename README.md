@@ -3,7 +3,7 @@
 
 ## 1. 推荐地址
 
-把代理一条条放入proxy，然后直接运行程序即可，目前推荐的代理获取地址：
+把代理放入proxy.txt文件,每行一个，然后直接运行程序即可，目前推荐的代理获取地址：
 
 [89IP: https://www.89ip.cn](https://www.89ip.cn/tqdl.html?api=1&address=美国&num=200)
 
